@@ -1,0 +1,81 @@
+$colors-logo: (
+  1: #943048,
+  2: #d7532d,
+  3: #d2cabb,
+  4: #9faad0,
+  5: #b39a3b,
+  6: #dc2c34,
+  7: #ece5be,
+  8: #d07500,
+  9: #7983a9,
+);
+$image-logo: (
+  1: "../assets/picture/1.png",
+  2: "../assets/picture/2.png",
+  3: "../assets/picture/3.png",
+  4: "../assets/picture/4.png",
+  5: "../assets/picture/5.png",
+  6: "../assets/picture/6.png",
+  7: "../assets/picture/7.png",
+  8: "../assets/picture/8.png",
+  9: "../assets/picture/9.png",
+);
+
+// ==========================================================================
+// Loader Base
+// ==========================================================================
+
+$loader-size: 150px;
+$animation-duration: 2s;
+$animation-delay: 0.1s;
+
+.loader {
+  width: $loader-size;
+  height: $loader-size;
+  perspective: $loader-size;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -($loader-size/2);
+  margin-left: -($loader-size/2);
+}
+
+.loader__tile {
+  display: block;
+  float: left;
+  width: 33.33%;
+  height: 33.33%;
+
+  animation-name: flip;
+  transform-style: preserve-3d;
+  animation-duration: $animation-duration;
+  animation-timing-function: ease-in-out;
+  transform: rotateY(0deg);
+  z-index: 0;
+}
+
+// ==========================================================================
+// Loader Parts
+// ==========================================================================
+
+@each $key, $images in $image-logo {
+  .loader__tile__#{$key} {
+    background: url($images);
+    background-size: cover;
+    animation-delay: ($animation-delay * $key);
+  }
+}
+
+// ==========================================================================
+// Loader Animation
+// ==========================================================================
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  11% {
+    transform: rotateY(180deg);
+  }
+}

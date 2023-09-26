@@ -1,0 +1,66 @@
+.event-wrapper {
+  width: 40%;
+  height: 100%;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  box-shadow: 2px 2px 15px rgba(33, 90, 155, 0.3);
+  background: rgba(255, 255, 255, 0.9) url("../assets/watercolor.png") no-repeat
+    0 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  gap: 20px;
+  padding: 10px;
+
+  h1 {
+    font-family: "Fuggles", cursive;
+    font-size: 1rem;
+  }
+  h2 {
+    font-weight: 100;
+    font-size: 0.8rem;
+    letter-spacing: 0.7em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  p {
+    font-weight: 100;
+    font-size: .8rem;
+    letter-spacing: 0.7rem;
+  }
+  .event-img {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .button-form {
+    border: none;
+    width: 40%;
+    height: 10%;
+    margin: 0 auto;
+    border-radius: 1em;
+    text-transform: uppercase;
+    background-color: white;
+    font-weight: 100;
+    &:hover {
+      cursor: pointer;
+      font-weight: 400;
+      box-shadow: 2px 2px 15px rgba(33, 90, 155, 0.3);
+    }
+  }
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  49% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuggles&display=swap");
+#root {
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  color: rgb(115, 115, 115);
+}
+body {
+  width: 100vw;
+  height: calc(100vh - 100px);
+}

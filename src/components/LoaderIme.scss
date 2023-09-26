@@ -1,0 +1,32 @@
+span {
+  max-width: 1024px;
+}
+.spanich {
+  font-family: "Fuggles", cursive;
+  font-size: 5em;
+  position: relative;
+  text-align: center;
+  font-weight: 600;
+  color: rgba(33, 90, 155, 0.7);
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+  animation: animacija 1s forwards;
+}
+
+@keyframes animacija {
+  0% {
+    bottom: -0.8em;
+    opacity: 1;
+  }
+
+  50% {
+    bottom: 0.8em;
+    opacity: 0;
+  }
+
+  100% {
+    bottom: 0;
+    opacity: 1;
+    color: #353239;
+  }
+}
