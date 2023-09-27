@@ -22,7 +22,7 @@ const Create = ({ setToggle }) => {
     }
 
     const { data, error } = await supabase
-      .from("krstenje")
+      .from("krstenje_final")
       .insert([{ prezime, ime, brojClanova }]);
     setSubmited(true);
     setTimeout(() => {
@@ -57,20 +57,6 @@ const Create = ({ setToggle }) => {
         <div className="group">
           <input
             type="text"
-            id="prezime"
-            value={prezime}
-            onChange={(e) => {
-              setPrezime(e.target.value);
-              setFormError(null);
-            }}
-          />
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label htmlFor="prezime">Prezime:</label>
-        </div>
-        <div className="group">
-          <input
-            type="text"
             id="ime"
             value={ime}
             onChange={(e) => {
@@ -81,6 +67,20 @@ const Create = ({ setToggle }) => {
           <span class="highlight"></span>
           <span class="bar"></span>
           <label htmlFor="ime">Ime:</label>
+        </div>
+        <div className="group">
+          <input
+            type="text"
+            id="prezime"
+            value={prezime}
+            onChange={(e) => {
+              setPrezime(e.target.value);
+              setFormError(null);
+            }}
+          />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label htmlFor="prezime">Prezime:</label>
         </div>
         <div className="group">
           <input
@@ -99,7 +99,11 @@ const Create = ({ setToggle }) => {
           <span class="bar"></span>
           <label htmlFor="brojClanova">Broj članova koji dolaze:</label>
         </div>
-        <Buttons name="Submit" submited={submited} setSubmited={setSubmited} />
+        <Buttons
+          name="Potvrdi dolazak"
+          submited={submited}
+          setSubmited={setSubmited}
+        />
         {formError ? <p className="error">{formError}</p> : <></>}
         <hr></hr>
         <div className="social-media-wrapper">

@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const fetchPopis = async () => {
-      const { data, error } = await supabase.from("krstenje").select();
+      const { data, error } = await supabase.from("krstenje_final").select();
 
       if (error) {
         setFetchError("Could not fetch the smoothies");
