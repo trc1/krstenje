@@ -42,7 +42,7 @@ export const Event = () => {
               </div>
             </a>
           </div>
-          <Create />
+          <Create setToggle={setToggle}/>
         </div>
       ) : (
         <></>

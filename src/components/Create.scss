@@ -105,6 +105,37 @@ input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
 }
 
+.social-media-wrapper {
+  width: 315px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  position: relative;
+  &::after {
+    content: 'or';
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    top: -24px;
+    font-weight: 400;
+
+  }
+
+  .social-icon {
+    width: 30px;
+    opacity: 0.7;
+    transition: .3s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+  }
+}
+
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
   from {

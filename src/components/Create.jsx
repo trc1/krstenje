@@ -2,8 +2,10 @@ import { useState } from "react";
 import supabase from "../config/supabaseClient";
 import "./Create.scss";
 import { Buttons } from "./Buttons";
+import whatsapp from "../assets/whatsapp.svg";
+import tel from "../assets/tel.svg";
 
-const Create = () => {
+const Create = ({ setToggle }) => {
   const [prezime, setPrezime] = useState("");
   const [ime, setIme] = useState("");
   const [brojClanova, setBrojClanova] = useState("");
@@ -23,6 +25,9 @@ const Create = () => {
       .from("krstenje")
       .insert([{ prezime, ime, brojClanova }]);
     setSubmited(true);
+    setTimeout(() => {
+      setToggle(false);
+    }, 3000);
 
     if (error) {
       console.log(error);
@@ -83,6 +88,9 @@ const Create = () => {
             id="brojClanova"
             value={brojClanova}
             onChange={(e) => {
+              if (e.target.value <= 0) {
+                return;
+              }
               setBrojClanova(e.target.value);
               setFormError(null);
             }}
@@ -92,8 +100,21 @@ const Create = () => {
           <label htmlFor="brojClanova">Broj članova koji dolaze:</label>
         </div>
         <Buttons name="Submit" submited={submited} setSubmited={setSubmited} />
-
         {formError ? <p className="error">{formError}</p> : <></>}
+        <hr></hr>
+        <div className="social-media-wrapper">
+          <a href="https://wa.me/385917699031">
+            <img
+              src={whatsapp}
+              alt="whatsapp"
+              className="social-icon"
+              width={10}
+            />
+          </a>
+          <a href="tel: +385917699031">
+            <img src={tel} alt="tel" className="social-icon" />
+          </a>
+        </div>
       </form>
     </div>
   );
