@@ -8,27 +8,38 @@ const Create = () => {
   const [ime, setIme] = useState("");
   const [brojClanova, setBrojClanova] = useState("");
   const [formError, setFormError] = useState(null);
+  const [submited, setSubmited] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!prezime || !brojClanova) {
+    if (!prezime || !brojClanova || !ime) {
       setFormError("Molimo popunite sva polja.");
+      setSubmited(false);
       return;
     }
 
     const { data, error } = await supabase
       .from("krstenje")
       .insert([{ prezime, ime, brojClanova }]);
+    setSubmited(true);
 
     if (error) {
       console.log(error);
-      setFormError("Molimo popunite sva polja.");
+      setTimeout(() => {
+        setFormError("Molimo popunite sva polja.");
+      }, 2000);
+      setSubmited(false);
     }
     if (data) {
       console.log(data);
       setFormError(null);
     }
+
+    setTimeout(() => {
+      setSubmited(false);
+      console.log(submited, "Tiemout");
+    }, 2000);
 
     setIme("");
     setPrezime("");
@@ -43,7 +54,10 @@ const Create = () => {
             type="text"
             id="prezime"
             value={prezime}
-            onChange={(e) => setPrezime(e.target.value)}
+            onChange={(e) => {
+              setPrezime(e.target.value);
+              setFormError(null);
+            }}
           />
           <span class="highlight"></span>
           <span class="bar"></span>
@@ -54,7 +68,10 @@ const Create = () => {
             type="text"
             id="ime"
             value={ime}
-            onChange={(e) => setIme(e.target.value)}
+            onChange={(e) => {
+              setIme(e.target.value);
+              setFormError(null);
+            }}
           />
           <span class="highlight"></span>
           <span class="bar"></span>
@@ -65,15 +82,18 @@ const Create = () => {
             type="number"
             id="brojClanova"
             value={brojClanova}
-            onChange={(e) => setBrojClanova(e.target.value)}
+            onChange={(e) => {
+              setBrojClanova(e.target.value);
+              setFormError(null);
+            }}
           />
           <span class="highlight"></span>
           <span class="bar"></span>
           <label htmlFor="brojClanova">Broj članova koji dolaze:</label>
         </div>
-        <Buttons name="Submit" />
+        <Buttons name="Submit" submited={submited} setSubmited={setSubmited} />
 
-        {formError && <p className="error">{formError}</p>}
+        {formError ? <p className="error">{formError}</p> : <></>}
       </form>
     </div>
   );

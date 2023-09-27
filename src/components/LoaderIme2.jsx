@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import "./LoaderIme.scss";
+import React from "react";
+import "./LoaderIme2.scss";
 
-export const LoaderIme = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const copy = "Emanuelovo";
+export const LoaderIme2 = () => {
+  const copy2 = "Hvala!";
 
   return (
     <span>
-      {copy.split("").map(function (char, index) {
+      {copy2.split("").map(function (char, index) {
         let style = { animationDelay: 0.5 + index / 40 + "s" };
 
         return (
           <span
-            className="spanich"
+            className="spanich2"
             aria-hidden="true"
             key={index}
             id={index}

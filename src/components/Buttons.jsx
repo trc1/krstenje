@@ -1,7 +1,11 @@
 import React from "react";
 import "./Buttons.scss";
+import { LoaderIme2 } from "./LoaderIme2";
 
-export const Buttons = ({ name }) => {
-  console.log(name);
-  return <button className="btn btn__secondary">{name}</button>;
+export const Buttons = ({ name, submited, setSubmited }) => {
+  return (
+    <button className="btn btn__secondary">
+      {submited ? <LoaderIme2 /> : name}
+    </button>
+  );
 };
