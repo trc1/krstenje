@@ -1,97 +1,78 @@
 import { useState } from "react";
 import supabase from "../config/supabaseClient";
+import "./Create.scss";
+import { Buttons } from "./Buttons";
 
 const Create = () => {
   const [prezime, setPrezime] = useState("");
+  const [ime, setIme] = useState("");
   const [brojClanova, setBrojClanova] = useState("");
-  const [obitelj, setObitelj] = useState([]);
+
   const [formError, setFormError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!prezime || !brojClanova) {
-      setFormError("Please fill in all the fields correctly.");
+      setFormError("Molimo popunite sva polja.");
       return;
     }
 
     const { data, error } = await supabase
-      .from("popis")
-      .insert([{ prezime, brojClanova, obitelj }]);
+      .from("krstenje")
+      .insert([{ prezime, ime, brojClanova }]);
 
     if (error) {
       console.log(error);
-      setFormError("Please fill in all the fields correctly.");
+      setFormError("Molimo popunite sva polja.");
     }
     if (data) {
       console.log(data);
       setFormError(null);
     }
 
-    setObitelj([]);
+    setIme("");
     setPrezime("");
     setBrojClanova("");
   };
 
-  const arrayRange = (start, stop, step) =>
-    Array.from(
-      { length: (stop - start) / step + 1 },
-      (value, index) => start + index * step
-    );
-  let range = arrayRange(1, brojClanova, 1);
-
-  const handleFamilyMemberChange = (index, fieldName, value) => {
-    const updatedObitelj = [...obitelj];
-    updatedObitelj[index] = {
-      ...updatedObitelj[index],
-      [fieldName]: value,
-    };
-
-    setObitelj(updatedObitelj);
-    const firstInObitelj = obitelj[0];
-    if (firstInObitelj === undefined) {
-      obitelj.shift();
-    }
-  };
-
   return (
-    <div className="page create">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Prezime:</label>
-        <input
-          type="text"
-          id="title"
-          value={prezime}
-          onChange={(e) => setPrezime(e.target.value)}
-        />
-
-        <label htmlFor="rating">Broj članova:</label>
-        <input
-          type="number"
-          id="rating"
-          value={brojClanova}
-          onChange={(e) => setBrojClanova(e.target.value)}
-        />
-        {range.map((index) => (
-          <div key={index}>
-            <label>Ime</label>
-            <input
-              type="text"
-              onChange={(e) => {
-                handleFamilyMemberChange(index, "ime", e.target.value);
-              }}
-            />
-            <label>Godine</label>
-            <input
-              type="text"
-              onChange={(e) => {
-                handleFamilyMemberChange(index, "godine", e.target.value);
-              }}
-            />
-          </div>
-        ))}
-
-        <button>Submit</button>
+    <div className="pageCreate">
+      <form onSubmit={handleSubmit} className="form-wrapper">
+        <div className="group">
+          <input
+            type="text"
+            id="prezime"
+            value={prezime}
+            onChange={(e) => setPrezime(e.target.value)}
+          />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label htmlFor="prezime">Prezime:</label>
+        </div>
+        <div className="group">
+          <input
+            type="text"
+            id="ime"
+            value={ime}
+            onChange={(e) => setIme(e.target.value)}
+          />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label htmlFor="ime">Ime:</label>
+        </div>
+        <div className="group">
+          <input
+            type="number"
+            id="brojClanova"
+            value={brojClanova}
+            onChange={(e) => setBrojClanova(e.target.value)}
+          />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label htmlFor="brojClanova">Broj članova koji dolaze:</label>
+        </div>
+        <Buttons name="Submit" />
 
         {formError && <p className="error">{formError}</p>}
       </form>

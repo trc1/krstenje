@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Fuggles&display=swap");
+@import url("https://use.typekit.net/uec1bvy.css");
 #root {
   margin: 0 auto;
   text-align: center;
   display: grid;
   place-items: center;
-  color: rgb(115, 115, 115);
-}
-body {
   width: 100vw;
-  height: calc(100vh - 100px);
+  height: 100vh;
+  color: rgb(115, 115, 115);
+  position: relative;
 }
