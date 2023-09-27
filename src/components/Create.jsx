@@ -7,7 +7,6 @@ const Create = () => {
   const [prezime, setPrezime] = useState("");
   const [ime, setIme] = useState("");
   const [brojClanova, setBrojClanova] = useState("");
-
   const [formError, setFormError] = useState(null);
 
   const handleSubmit = async (e) => {
