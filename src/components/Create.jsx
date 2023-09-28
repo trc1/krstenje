@@ -86,7 +86,7 @@ const Create = ({ setToggle }) => {
           <input
             type="number"
             id="brojClanova"
-            value={brojClanova}
+            value={brojClanova <= 0 ? "" : brojClanova}
             onChange={(e) => {
               if (e.target.value <= 0) {
                 return;
