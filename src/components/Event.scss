@@ -154,7 +154,11 @@ $close-width: calc($button-size / 10);
     }
   }
 }
-
+@media screen and (min-width: 700px) {
+  .event-wrapper {
+    max-width: 600px;
+  }
+}
 @media screen and (max-height: 800px) {
   #root {
     width: 100vw;
