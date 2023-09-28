@@ -88,9 +88,6 @@ const Create = ({ setToggle }) => {
             id="brojClanova"
             value={brojClanova <= 0 ? "" : brojClanova}
             onChange={(e) => {
-              if (e.target.value <= 0) {
-                return;
-              }
               setBrojClanova(e.target.value);
               setFormError(null);
             }}
